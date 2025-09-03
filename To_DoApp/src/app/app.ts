@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { TaskItemsComponent } from './task-items/task-items';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TaskItemsComponent],
+  standalone: true,
+  imports: [RouterOutlet, RouterModule], // тут вже не треба явно Home або Tasks
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

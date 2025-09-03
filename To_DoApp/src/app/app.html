@@ -1,6 +1,10 @@
-<div class="container">
+<nav>
+    <a routerLink="/">Home Page</a> |
+    <a routerLink="/tasks">Tasks</a> |
+    <a routerLink="">Rate Us</a>
+    <a routerLink="">Login</a>
+</nav>
 
-</div>
+<hr>
 
-<h1>{{ title() }}</h1>
-<app-task-items></app-task-items>
+<router-outlet></router-outlet> 
