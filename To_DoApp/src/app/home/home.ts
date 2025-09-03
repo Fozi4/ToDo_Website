@@ -13,4 +13,5 @@ export class HomeComponent  {
   goToTasks(){
     this.router.navigate(['/tasks'])
   }
+  
 }
