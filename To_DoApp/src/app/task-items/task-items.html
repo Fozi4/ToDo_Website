@@ -1,13 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-</head>
-<body>
-    <div class="text-container">
-        <h1>Tasks Page</h1>
-    </div> 
-</body>
-</html>
+<div class="background-img">
+<div class="tasks-container">
+    <h1>Tasks</h1>
+  
+    <div class="task-controls">
+      <input type="text" placeholder="Search tasks..." />
+      <button class="add-btn">+ Add Task</button>
+    </div>
+    
+    <ul class="task-list">
+      <li class="task-item">
+        <input type="checkbox" />
+        <span class="task-text">Learn Angular basics</span>
+        <div class="task-actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </li>
+  
+      <li class="task-item">
+        <input type="checkbox" checked />
+        <span class="task-text completed">Build ToDo App</span>
+        <div class="task-actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </li>
+    </ul>
+    </div>
+</div>

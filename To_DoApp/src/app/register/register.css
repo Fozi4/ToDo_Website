@@ -1,0 +1,71 @@
+.auth-page {
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10vh; /* відступ у відсотках від висоти екрану */
+    background: linear-gradient(135deg, #1f2937 0%, #0b0f14 100%);
+  }
+
+.register-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem;
+    background: rgba(20, 22, 26, 0.88);
+    color: #eef2f7;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    backdrop-filter: saturate(140%) blur(6px);
+  }
+  
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+    color: #cfd8e3;
+}
+
+input {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #2b3440;
+    border-radius: 8px;
+    background: #11161c;
+    color: #eef2f7;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: #7b8794;
+}
+    
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #2980b9;
+}

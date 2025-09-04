@@ -1,52 +1,110 @@
+/* повноекранний контейнер з градієнтом */
+.auth-page {
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10vh; /* відступ у відсотках від висоти екрану */
+    background: linear-gradient(135deg, #1f2937 0%, #0b0f14 100%);
+  }
+  
+  /* картка логіну */
 .login-container {
-max-width: 400px;
-margin: 80px auto;
+width: 100%;
+max-width: 420px;
 padding: 2rem;
-background: #1e1e1e;
-color: white;
-border-radius: 8px;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-.login-container a{
-    margin-top: 20px;
-    display: inline-block;
-    color:#2980b9;
-    cursor: pointer;
-}
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+background: rgba(20, 22, 26, 0.88);
+color: #eef2f7;
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+backdrop-filter: saturate(140%) blur(6px);
 }
 
+.login-container h2 {
+text-align: center;
+margin-bottom: 1.5rem;
+font-weight: 800;
+letter-spacing: 0.3px;
+}
+
+/* групи полів */
 .form-group {
-    margin-bottom: 1rem;
+margin-bottom: 1rem;
 }
 
 label {
-    display: block;
-    margin-bottom: 0.5rem;
+display: block;
+margin-bottom: 0.45rem;
+font-size: 0.95rem;
+color: #cfd8e3;
 }
 
+/* інпути */
 input {
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background: #2b2b2b;
-    color: white;
+width: 100%;
+padding: 0.7rem 0.85rem;
+border: 1px solid #2b3440;
+border-radius: 8px;
+background: #11161c;
+color: #eef2f7;
+outline: none;
+transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+input::placeholder {
+color: #7b8794;
+}
+
+input:focus {
+border-color: #3b82f6;
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* кнопка */
 button {
-    width: 100%;
-    padding: 0.8rem;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+width: 100%;
+padding: 0.85rem;
+background: #3b82f6;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+transition: transform 0.06s ease, background-color 0.25s ease,
+    box-shadow 0.25s ease;
+margin-top: 0.25rem;
 }
 
 button:hover {
-    background: #2980b9;
+background: #2563eb;
+box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+button:active {
+transform: translateY(1px);
+}
+
+/* лінк під формою */
+.link {
+margin-top: 16px;
+display: inline-block;
+color: #60a5fa;
+cursor: pointer;
+text-align: center;
+width: 100%;
+text-decoration: none;
+transition: color 0.2s ease;
+}
+
+.link:hover {
+color: #93c5fd;
+}
+
+/* дрібна адаптивність */
+@media (max-width: 420px) {
+.login-container {
+    padding: 1.25rem;
+    border-radius: 10px;
+}
 }
