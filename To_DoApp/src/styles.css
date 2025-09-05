@@ -19,3 +19,9 @@ app-root {
   height: 100vh;
   overflow: hidden; 
 }
+
+.error-feedback {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
