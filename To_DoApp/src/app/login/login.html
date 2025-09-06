@@ -3,14 +3,24 @@
     <h2>Login</h2>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="email">Email</label>
         <input
-          id="username"
-          formControlName="username"
+          id="email"
+          formControlName="email"
           type="text"
-          placeholder="Enter username"
-          autocomplete="username"
+          placeholder="Enter email"
+          autocomplete="email"
         />
+        @if (form.controls.email.hasError('required')) {
+          <div class="error-feedback">
+            Enter your email address
+          </div>
+        }
+        @if (form.controls.email.hasError('email')) {
+          <div class="error-feedback">
+            Enter a valid email
+          </div>
+        }
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -21,6 +31,11 @@
           placeholder="Enter password"
           autocomplete="current-password"
         />
+        @if (form.controls.password.hasError('required')) {
+          <div class="error-feedback">
+            Please enter your password
+          </div>
+        }
       </div>
       <button type="submit">Login</button>
     </form>

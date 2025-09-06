@@ -1,9 +1,9 @@
 <nav>
     <a routerLink="/" calss="main-nav">TODo</a> |
     <a routerLink="/tasks">Tasks</a> |
-    <a routerLink="/login">Login</a>
+    <a *ngIf="!isLoggedIn" routerLink="/login">Login</a> 
+    <a *ngIf="isLoggedIn" (click)="logout()" routerLink="/login">Logout</a>
+    <span *ngIf="user$ | async as user">Hello, {{ user.name }}</span>
 </nav>
-
 <hr>
-
 <router-outlet></router-outlet> 

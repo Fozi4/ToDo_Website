@@ -1,117 +1,155 @@
+.background-img {
+  background-image: url('/images/todoBackground.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.background-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
 .tasks-container {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(20, 22, 26, 0.88);
-    border-radius: 10px;
-    color: #eef2f7;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-  }
-  
-h1 {
-text-align: center;
-margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(20, 22, 26, 0.88);
+  border-radius: 10px;
+  color: #eef2f7;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.tasks-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem; 
 }
 
 .task-controls {
-display: flex;
-justify-content: space-between;
-margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.task-controls input {
-flex: 1;
-padding: 0.6rem;
-border: 1px solid #444;
-border-radius: 5px;
-background: #2b2b2b;
-color: white;
-margin-right: 10px;
+.task-controls .task-input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #2b2b2b;
+  color: #eef2f7;
+  margin-right: 10px;
+}
+
+.task-controls .task-input:focus {
+  outline: none;
+  border-color: #3498db;
 }
 
 .add-btn {
-padding: 0.6rem 1.2rem;
-background: #3498db;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-color: white;
+  padding: 0.6rem 1.2rem;
+  background: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .add-btn:hover {
-background: #2980b9;
+  background: #2980b9;
+  transform: translateY(-1px);
 }
 
 .task-list {
-list-style: none;
-padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .task-item {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0.8rem;
-margin-bottom: 0.8rem;
-background: #1f2937;
-border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  background: #1f2937;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
-.task-text {
-flex: 1;
-margin-left: 10px;
+.task-item:hover {
+  background: #2a3140;
 }
 
-.task-text.completed {
-text-decoration: line-through;
-color: gray;
+.task-item input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #3498db;
+  cursor: pointer;
+  margin-right: 0.8rem;
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-content span {
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.task-content span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-content small {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: #b0b3b8;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .task-actions button {
-margin-left: 5px;
-padding: 0.4rem 0.8rem;
-border: none;
-border-radius: 5px;
-cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.edit-btn {
-background: #f39c12;
-color: white;
+.task-actions button:hover {
+  transform: translateY(-1px);
 }
 
-.edit-btn:hover {
-background: #d68910;
+.task-actions button:nth-child(1) {
+  background: #f39c12;
+  color: white;
 }
 
-.delete-btn {
-background: #e74c3c;
-color: white;
+.task-actions button:nth-child(1):hover {
+  background: #d68910;
 }
 
-.delete-btn:hover {
-background: #c0392b;
+.task-actions button:nth-child(2) {
+  background: #e74c3c;
+  color: white;
 }
 
-.background-img {
-    background-image: url('/images/todoBackground.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-  }
-  
-.background-img::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+.task-actions button:nth-child(2):hover {
+  background: #c0392b;
 }
