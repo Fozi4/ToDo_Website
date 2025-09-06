@@ -9,8 +9,9 @@ using ToDo_backend.Models;
 
 namespace ToDo_backend.Controllers
 {
-    [Route("api/[controller]")]
+
     [ApiController]
+    [Route("api/[controller]")]
     public class TaskItemController : ControllerBase
     {
         private readonly TaskItemContext _context;

@@ -1,6 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using ToDo_backend.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -31,6 +36,22 @@ builder.Services.Configure<IdentityOptions>(options =>
         //options.Password.RequireNonAlphanumeric = true;
         options.User.RequireUniqueEmail = true;
     });
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = 
+    x.DefaultChallengeScheme = 
+    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(y =>
+{
+    y.SaveToken = false;
+    y.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:JWT_Secret"]!))
+    };
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -72,6 +93,33 @@ app.MapPost("/api/signup", async ( UserManager<AppUser> userManager,
     }
 });
 
+app.MapPost("/api/signin", async ( UserManager<AppUser> userManager,
+    [FromBody] LoginModel loginModel) =>
+{
+    var user = await userManager.FindByEmailAsync(loginModel.Email);
+    if (user != null && await userManager.CheckPasswordAsync(user, loginModel.Password))
+    {
+        var signInKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:JWT_Secret"]!));
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new Claim[]
+            {
+                new Claim("UserID", user.Id.ToString())
+            }),
+            Expires = DateTime.UtcNow.AddDays(10),
+            SigningCredentials = new SigningCredentials(signInKey, SecurityAlgorithms.HmacSha256Signature)
+        };
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+        var token = tokenHandler.WriteToken(securityToken);
+        return Results.Ok(new {token, name = user.name});
+    }
+    else 
+    {
+        return Results.BadRequest(new { Message = "Email or password is incorrect" });
+    }
+});
 app.Run();
 
 public class UserRegistrationModel
@@ -79,4 +127,10 @@ public class UserRegistrationModel
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string name { get; set; } = string.Empty;
+}
+
+public class LoginModel
+{
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }
