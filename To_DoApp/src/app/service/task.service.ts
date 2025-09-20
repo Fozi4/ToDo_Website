@@ -24,4 +24,8 @@ export class TaskService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  searchByName(name: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/search?q=${name}`);
+  }
 }

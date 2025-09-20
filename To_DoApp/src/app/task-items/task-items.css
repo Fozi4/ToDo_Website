@@ -153,3 +153,22 @@
 .task-actions button:nth-child(2):hover {
   background: #c0392b;
 }
+
+.search-btn {
+  padding: 0.6rem 1.9rem;
+  background: #2ecc71;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.search-btn:hover {
+  background: #27ae60;
+  transform: translateY(-1px);
+}
+
+.search-block {
+  margin-bottom: 1.5rem;
+}

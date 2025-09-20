@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class TaskItemsComponent  implements OnInit {
   newTaskText: string = '';
   tasks: Task[] = [];
-
+  searchText: string = '';
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
@@ -58,5 +58,16 @@ export class TaskItemsComponent  implements OnInit {
       .subscribe(() =>
         this.tasks = this.tasks.filter(t => t.taskId !== taskId)
       );
+  }
+
+  searchTasks() {
+    const name = this.searchText.trim();
+    if (name) {
+      this.taskService.searchByName(name).subscribe((results) => {
+        this.tasks = results;
+      });
+    } else {
+      this.loadTasks();
+    }
   }
 }
