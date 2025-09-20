@@ -120,6 +120,15 @@ app.MapPost("/api/signin", async ( UserManager<AppUser> userManager,
         return Results.BadRequest(new { Message = "Email or password is incorrect" });
     }
 });
+
+app.MapGet("/api/tasks/search", async (string q, TaskItemContext db) =>
+{
+    var tasks = await db.TaskItems
+        .Where(t => t.TaskName.Contains(q))
+        .ToListAsync();
+
+    return Results.Ok(tasks);
+});
 app.Run();
 
 public class UserRegistrationModel
