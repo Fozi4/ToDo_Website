@@ -100,6 +100,19 @@ namespace ToDo_backend.Controllers
             return NoContent();
         }
 
+        [HttpGet("search")]
+        public async Task<ActionResult> SearchTaskItem([FromQuery] string q)
+        {
+            if (string.IsNullOrWhiteSpace(q))
+            {
+                return BadRequest("Query string cannot be empty");
+            }
+            var tasks = await _context.TaskItems
+                .Where(t => t.TaskName.Contains(q))
+                .ToListAsync();
+            return Ok(tasks);
+        }
+
         private bool TaskItemExists(int id)
         {
             return _context.TaskItems.Any(e => e.TaskId == id);
